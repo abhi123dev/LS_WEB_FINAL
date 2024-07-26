@@ -1,0 +1,88 @@
+{% extends 'home/base.html' %}
+<style>
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        text-align: center;
+    }
+</style>
+{% block start %}
+
+
+
+<div class="container mt-5">
+
+    <form class="col-6 mx-auto card p-3 shadow-lg bg-warning" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Add Tweet</h2>
+        <hr>
+
+        <!-- <label for="exampleInputEmail1" class="form-label">Name</label> -->
+        <input name="name" type="hidden" class="form-control" value="{{ username }}" readonly>
+
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Content</label>
+            <textarea class="form-control" name="content" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Image</label>
+            <input name="tweet_image" type="file" class="form-control">
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <hr>
+
+    <div class="mt-5">
+        <div class="mx-auto col-6">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label text-white">Search User</label>
+                    <input name="Search" type="text" class="form-control" value="{{ search_query}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+            {% if tweets %}
+                {% for tweet in tweets %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="background-color: blanchedalmond;">
+                        <h5 class="card-title" style=" text-align: center;">{{ tweet.name }}</h5>
+                        <img src="/media/{{ tweet.tweet_image }}" class="card-img-top" alt="Tweet Image"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                        <!-- <h5 class="card-title">{{ tweet.name }}</h5> -->
+                            <p class="card-text">{{ tweet.content|truncatewords:20 }}</p>
+                            <a href="/delete_tweet/{{ tweet.id }}/" class="btn btn-danger m-2">Delete</a>
+                            <a href="/update_tweet/{{ tweet.id }}/" class="btn btn-success m-2">Update</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted on: {{ tweet.created_at|date:"F j, Y, g:i a" }}
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            {%else%}
+                <p>NO tweet found</p>    
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
