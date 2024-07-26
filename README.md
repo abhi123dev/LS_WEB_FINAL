@@ -1,5 +1,5 @@
 # LS_WEB_FINAL
-<H2> You can see working of my twitting app <b>AbhiTweets</b><a href="https://github.com/user-attachments/assets/03e02d3d-eb1b-450d-b340-cba783383e2f"> HERE</a> </H2>
+<H2> You can see working of my tweeting app <b>AbhiTweets</b><a href="https://github.com/user-attachments/assets/03e02d3d-eb1b-450d-b340-cba783383e2f"> HERE</a> </H2>
 
 <p>MY ASSIGNMENT contains two apps <b>authentication</b> and <b>home</b><br>
   home contains files for home page working <br>
